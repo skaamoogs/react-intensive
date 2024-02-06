@@ -1,0 +1,115 @@
+.header {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+  padding: 40px 0;
+  // background-color: $background;
+}
+
+.nav {
+  justify-self: center;
+}
+
+.user_block {
+  justify-self: end;
+}
+
+.logo {
+  // font-family: $Battambang;
+  text-transform: uppercase;
+  font-size: 25px;
+  font-weight: 700;
+  line-height: 1;
+  color: $text;
+  position: relative;
+
+  .bold {
+    display: flex;
+  }
+
+  .thin {
+    text-align-last: left;
+    font-weight: normal;
+    // font-family: $Nunito;
+    font-size: 16px;
+    letter-spacing: 10px;
+  }
+}
+
+.bounce_letter {
+  animation: bounce 9s ease-in-out;
+  animation-delay: 2s;
+  transition: all 200ms ease-in-out;
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(0);
+  }
+  4% {
+    transform: translateY(-7px);
+  }
+  5% {
+    transform: translateY(-6.5px);
+  }
+  6% {
+    transform: translateY(0);
+  }
+  7% {
+    transform: translateY(-4px);
+  }
+  8% {
+    transform: translateY(-3.5px);
+  }
+  9% {
+    transform: translateY(0);
+  }
+  10% {
+    transform: translateY(-1px);
+  }
+  11% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.menu_list {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  font-size: 14px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.menu_item > a {
+  text-decoration: none;
+  position: relative;
+  color: $text;
+  &:before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+    margin: -5px 0;
+    background-color: white;
+    visibility: hidden;
+    transform: scaleX(0);
+    transition: all 0.2s ease-in-out 0s;
+  }
+  &:hover:before {
+    visibility: visible;
+    transform: scaleX(1);
+  }
+}
+
+.user_block {
+  display: flex;
+  gap: 10px;
+}
