@@ -52,7 +52,6 @@ function App() {
           </a>
         </span>
       </header>
-      <Button>"sdssdsd"</Button>
     </div>
   );
 }
