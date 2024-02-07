@@ -1,5 +1,5 @@
-import React, { ReactEventHandler } from "react";
-import buttonStyle from "./Button.module.css";
+import React, { ReactEventHandler } from 'react';
+import buttonStyle from './Button.module.css';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children?: React.ReactNode;
