@@ -10,7 +10,7 @@ interface InputProps extends HTMLProps<HTMLInputElement> {
 
 const Input: FC<InputProps> = ({ className, value, label, error, ...rest }) => {
   return (
-    <div className={`${styles.container} ${className}`}>
+    <label className={`${styles.container} ${className}`}>
       {label && <p className={styles.label}>{label}</p>}
       <input
         value={value}
@@ -18,7 +18,7 @@ const Input: FC<InputProps> = ({ className, value, label, error, ...rest }) => {
         {...rest}
       />
       {error && <p className={styles.error}>{error}</p>}
-    </div>
+    </label>
   );
 };
 
