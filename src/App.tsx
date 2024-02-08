@@ -1,8 +1,15 @@
 import './App.css';
-import Layout from './pages/Layout';
+import Form from './components/form/Form';
 
 function App() {
-  return <Layout />;
+  return (
+    <Form
+      inputs={[
+        { name: 'login', label: 'Login' },
+        { name: 'password', label: 'Password' },
+      ]}
+    />
+  );
 }
 
 export default App;
