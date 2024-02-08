@@ -3,12 +3,14 @@ import Form from './components/form/Form';
 
 function App() {
   return (
-    <Form
-      inputs={[
-        { name: 'login', label: 'Login' },
-        { name: 'password', label: 'Password' },
-      ]}
-    />
+    <div className='App-header'>
+      <Form
+        inputs={[
+          { name: 'login', label: 'Login' },
+          { name: 'password', label: 'Password', error: 'Required' },
+        ]}
+      />
+    </div>
   );
 }
 
