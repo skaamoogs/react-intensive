@@ -1,17 +1,8 @@
 import './App.css';
-import Form from './components/form/Form';
+import Layout from './pages/Layout';
 
 function App() {
-  return (
-    <div className='App-header'>
-      <Form
-        inputs={[
-          { name: 'login', label: 'Login' },
-          { name: 'password', label: 'Password', error: 'Required' },
-        ]}
-      />
-    </div>
-  );
+  return <Layout />;
 }
 
 export default App;

@@ -25,7 +25,6 @@ export const validateForm = (form: FormRecord): FormValidator => {
       return [k, isValidField ? '' : ValidationErrorMessages.Required];
     })
   );
-  console.log(isValid, fields);
 
   return { isValid, errors: fields };
 };

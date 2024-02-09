@@ -9,22 +9,21 @@ export interface FormProps extends HTMLProps<HTMLFormElement> {
   inputs: InputProps[];
   submitHandler?: (form: FormRecord) => void;
   error?: string;
+  submitText: string;
 }
 
-const Form = ({ inputs, submitHandler, error }: FormProps) => {
+const Form = ({ inputs, submitHandler, error, submitText }: FormProps) => {
   const [inputErrors, setInputErrors] = useState<Record<string, string>>({});
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
     const formData = new FormData(e.currentTarget);
     const formJson = Object.fromEntries(formData.entries());
-    console.log(formJson);
     const { isValid, errors } = validateForm(formJson);
     if (isValid) {
       submitHandler?.(formJson);
       return;
     }
+    e.preventDefault();
     setInputErrors(errors);
   };
 
@@ -37,19 +36,22 @@ const Form = ({ inputs, submitHandler, error }: FormProps) => {
   };
 
   return (
-    <form className={styles.form} onSubmit={handleSubmit}>
-      {inputs.map(({ name, ...inputProps }) => (
-        <Input
-          {...inputProps}
-          key={name}
-          className={styles.input}
-          name={name}
-          error={name && inputErrors[name]}
-          onChange={clearError}
-        />
-      ))}
-      <Button className={styles.button}>Авторизоваться</Button>
-    </form>
+    <div className={styles.container}>
+      {error && <p className={styles.error}>{error}</p>}
+      <form className={styles.form} onSubmit={handleSubmit}>
+        {inputs.map(({ name, ...inputProps }) => (
+          <Input
+            {...inputProps}
+            key={name}
+            className={styles.input}
+            name={name}
+            error={name && inputErrors[name]}
+            onChange={clearError}
+          />
+        ))}
+        <Button className={styles.button}>{submitText}</Button>
+      </form>
+    </div>
   );
 };
 
