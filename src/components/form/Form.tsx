@@ -16,6 +16,8 @@ const Form = ({ inputs, submitHandler, error, submitText }: FormProps) => {
   const [inputErrors, setInputErrors] = useState<Record<string, string>>({});
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
     const formData = new FormData(e.currentTarget);
     const formJson = Object.fromEntries(formData.entries());
     const { isValid, errors } = validateForm(formJson);
@@ -23,7 +25,6 @@ const Form = ({ inputs, submitHandler, error, submitText }: FormProps) => {
       submitHandler?.(formJson);
       return;
     }
-    e.preventDefault();
     setInputErrors(errors);
   };
 
