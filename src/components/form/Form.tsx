@@ -4,6 +4,7 @@ import Input, { InputProps } from '../input/Input';
 import Button from '../button/Button';
 import { validateForm } from '../../utils/formValidator';
 import { FormRecord } from '../../types/types';
+import clsx from 'clsx';
 
 export interface FormProps extends HTMLProps<HTMLFormElement> {
   inputs: InputProps[];
@@ -12,7 +13,13 @@ export interface FormProps extends HTMLProps<HTMLFormElement> {
   submitText: string;
 }
 
-const Form = ({ inputs, submitHandler, error, submitText }: FormProps) => {
+const Form = ({
+  inputs,
+  submitHandler,
+  error,
+  submitText,
+  className,
+}: FormProps) => {
   const [inputErrors, setInputErrors] = useState<Record<string, string>>({});
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -37,7 +44,7 @@ const Form = ({ inputs, submitHandler, error, submitText }: FormProps) => {
   };
 
   return (
-    <div className={styles.container}>
+    <div className={clsx(styles.container, className)}>
       {error && <p className={styles.error}>{error}</p>}
       <form className={styles.form} onSubmit={handleSubmit}>
         {inputs.map(({ name, ...inputProps }) => (
