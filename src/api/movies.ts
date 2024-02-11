@@ -7,22 +7,21 @@ import {
 } from './types';
 import { baseQuery } from './utils';
 
-const moviesQuery = <T>(data: GetFilteredMoviesData) => {
-  return {
-    url: Endpoints.GetMovies,
-    params: data,
-  };
-};
-
 export const moviesApi = createApi({
   reducerPath: 'movies',
   baseQuery,
   endpoints: (builder) => ({
     getFilteredMovies: builder.query<ResponseResult, GetFilteredMoviesData>({
-      query: moviesQuery,
+      query: (data) => ({
+        url: Endpoints.GetMovies,
+        params: data,
+      }),
     }),
     searchMovies: builder.query<ResponseResult, SearchMoviesData>({
-      query: moviesQuery,
+      query: (data) => ({
+        url: Endpoints.SearchMovies,
+        params: data,
+      }),
     }),
   }),
 });

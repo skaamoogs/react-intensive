@@ -26,7 +26,7 @@ export interface PossibleFilterValues {
 }
 
 export interface MovieFilters extends PossibleFilterValues {
-  year?: number;
+  year?: string;
 }
 
 export type GetFilteredMoviesData = BaseQueryParams & MovieFilters;
