@@ -2,6 +2,7 @@ import React from 'react';
 import logo from './assets/logo.svg';
 import './App.css';
 import { Counter } from './components/counter/Counter';
+import { FilmCard } from './components/filmcard/FilmCard';
 
 function App() {
   return (
