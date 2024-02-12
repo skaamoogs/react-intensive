@@ -3,7 +3,7 @@ import clsx from 'clsx';
 
 import styles from './Input.module.scss';
 
-interface InputProps extends HTMLProps<HTMLInputElement> {
+export interface InputProps extends HTMLProps<HTMLInputElement> {
   label?: string;
   error?: string;
 }
