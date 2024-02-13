@@ -1,0 +1,14 @@
+.card {
+  width: 250px;
+
+  .title {
+    font-size: $textBase;
+    color: $background;
+    background-color: $text;
+  }
+
+  .filter {
+    font-size: 14px;
+    background-color: $accent;
+  }
+}
