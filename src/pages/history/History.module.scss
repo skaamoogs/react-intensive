@@ -1,41 +1,27 @@
+.container {
+  margin: 0 auto;
+  max-width: 900px;
+}
 .title {
   font-size: 24px;
   margin-bottom: 20px;
 }
-
-.container {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
+.entries {
+  overflow-y: auto;
+  max-height: 500px;
+  border-radius: 12px;
 }
+.entryContainer {
+  color: $text;
+  padding: 10px;
+  background-color: #565656;
+  transition: 0.15s;
 
-.card {
-  width: 250px;
-  padding: 20px;
-  border: $borderBase;
-  border-radius: 16px;
-  background-color: white;
-  cursor: pointer;
-
-  .title {
-    font-size: $textBase;
-    color: $background;
-    background-color: $text;
-    padding: 10px;
-    border-radius: 12px;
-    margin-bottom: 20px;
+  &:hover {
+    background-color: #7c7c7c;
   }
 
-  .filters {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-
-    .filter {
-      font-size: 14px;
-      background-color: $accent;
-      padding: 10px;
-      border-radius: 12px;
-    }
+  .entry {
+    font-size: $textBase;
   }
 }
