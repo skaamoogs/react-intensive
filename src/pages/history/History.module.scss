@@ -1,14 +1,41 @@
+.title {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.container {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
 .card {
   width: 250px;
+  padding: 20px;
+  border: $borderBase;
+  border-radius: 16px;
+  background-color: white;
+  cursor: pointer;
 
   .title {
     font-size: $textBase;
     color: $background;
     background-color: $text;
+    padding: 10px;
+    border-radius: 12px;
+    margin-bottom: 20px;
   }
 
-  .filter {
-    font-size: 14px;
-    background-color: $accent;
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    .filter {
+      font-size: 14px;
+      background-color: $accent;
+      padding: 10px;
+      border-radius: 12px;
+    }
   }
 }

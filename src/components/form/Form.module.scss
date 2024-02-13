@@ -1,6 +1,6 @@
 .container {
   width: 380px;
-  border: 1px #282828 solid;
+  border: $borderBase;
   border-radius: 16px;
   padding: 30px 40px;
   font-size: $textBase;
