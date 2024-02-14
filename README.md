@@ -4,6 +4,12 @@
 
 Деплой приложения: [https://react-intensive.netlify.app/](https://react-intensive.netlify.app/)
 
+### Начало работы
+
+Для работы API нужно получить токен (см. документацию API: [https://api.kinopoisk.dev/documentation](https://api.kinopoisk.dev/documentation)). После этого создать файл .env в корне проекта и внести туда ваш токен:
+
+REACT_APP_API_KEY=YOUR_TOKEN
+
 ### Работа с проектом
 
 Установите зависимости:

@@ -2,6 +2,7 @@ import { FC } from 'react';
 import Header from '../components/header/Header';
 
 import styles from './Layout.module.scss';
+import { Outlet } from 'react-router-dom';
 
 const Layout: FC = () => {
   return (
@@ -9,7 +10,7 @@ const Layout: FC = () => {
       <Header />
       <main className={styles.main}>
         {/* Maybe a block with search and filters will be here? */}
-        {/* <Outlet /> */}
+        <Outlet />
       </main>
     </div>
   );
