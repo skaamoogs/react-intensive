@@ -35,3 +35,9 @@ export interface Movie {
   seriesLength: number | null;
   totalSeriesLength: number | null;
 }
+
+export enum MovieTypes {
+  Movie = 'movie',
+  TvSeries = 'tv-series',
+  Cartoon = 'cartoon',
+}

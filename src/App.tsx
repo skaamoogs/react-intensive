@@ -18,9 +18,7 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <HomePage /> },
       { path: Paths.Search, element: <HomePage /> },
-      { path: Paths.Movies, element: <HomePage /> },
-      { path: Paths.Series, element: <HomePage /> },
-      { path: Paths.Cartoons, element: <HomePage /> },
+      { path: Paths.Catalog, element: <HomePage /> },
       { path: `${Paths.Movie}/:movieId`, element: <MoviePage /> },
       { path: Paths.Favorites, element: <FavoritesPage /> },
       { path: Paths.History, element: <HistoryPage /> },
