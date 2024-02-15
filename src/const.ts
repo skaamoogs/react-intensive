@@ -1,8 +1,6 @@
 export enum Paths {
   Root = '/',
-  Movies = '/movies',
-  Series = '/series',
-  Cartoons = '/cartoons',
+  Catalog = '/catalog',
   Movie = '/movie',
   Login = '/login',
   Signup = '/signup',
