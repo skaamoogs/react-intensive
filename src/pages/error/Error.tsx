@@ -30,9 +30,9 @@ export const ErrorPage = () => {
         {errorStatus.code}
       </h1>
       <p className={styles.text}>{errorStatus.message}</p>
-      <Link to={Paths.Root} className={styles.link}>
+      <a href={Paths.Root} className={styles.link}>
         <Button>Home</Button>
-      </Link>
+      </a>
     </div>
   );
 };
