@@ -1,30 +1,32 @@
-import { ChangeEvent, useRef, useState } from 'react';
+import { ChangeEvent, FormEvent, useRef, useState } from 'react';
 import Input from '../input/Input';
 import styles from './SearchBar.module.scss';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { Paths } from '../../const';
 
-const queryParamName = 'query';
-
 const SearchBar = () => {
   const navigate = useNavigate();
-  const [params] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const [searchValue, setSearchValue] = useState(
-    params.get(queryParamName) ?? ''
+    searchParams.get('query') ?? ''
   );
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const handleSubmit = () => {
-    navigate(Paths.Search);
-  };
-
-  const resetInput = () => {
-    setSearchValue('');
+  const clearInput = () => {
     inputRef.current?.focus();
+    setSearchValue('');
   };
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value);
+  };
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    if (!searchValue) {
+      e.preventDefault();
+      return;
+    }
+    navigate(Paths.Search);
   };
 
   return (
@@ -34,16 +36,16 @@ const SearchBar = () => {
         onChange={handleInputChange}
         type='search'
         className={styles.input}
-        name={queryParamName}
         ref={inputRef}
+        name='query'
       />
       {searchValue && (
         <button
           type='reset'
-          className={styles.cancelButton}
-          onClick={resetInput}
+          className={styles.button_cancel}
+          onClick={clearInput}
         >
-          <img src='cross.svg' alt='cancel' className={styles.icon} />
+          <img src='cancel.svg' alt='reset' className={styles.icon} />
         </button>
       )}
       <button type='submit' className={styles.button}>
