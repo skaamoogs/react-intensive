@@ -1,9 +1,4 @@
-import React, {
-  Component,
-  ErrorInfo,
-  PropsWithChildren,
-  ReactNode,
-} from 'react';
+import React, { ErrorInfo, PropsWithChildren, ReactNode } from 'react';
 
 interface ErrorBoundaryState {
   hasError: boolean;
