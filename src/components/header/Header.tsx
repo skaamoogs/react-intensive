@@ -6,8 +6,13 @@ import { Link } from 'react-router-dom';
 import { Paths } from '../../const';
 import { createSearchQuery } from '../../utils/helpers';
 import { MovieTypes } from '../../types/types';
+import { deleteUser, userSelector } from '../../store/userSlice';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
 
 const Header: FC = () => {
+  const user = useAppSelector(userSelector);
+  const dispatch = useAppDispatch();
+
   return (
     <header className={styles.header}>
       <Link to={Paths.Root} className={styles.logo}>
@@ -52,12 +57,23 @@ const Header: FC = () => {
         </ul>
       </nav>
       <div className={styles.user_block}>
-        <Link to={Paths.Login}>
-          <Button>Login</Button>
-        </Link>
-        <Link to={Paths.Signup}>
-          <Button>Sign Up</Button>
-        </Link>
+        {user ? (
+          <>
+            <p>{user.username}</p>
+            <Link to={Paths.Favorites}>Favorites</Link>
+            <Link to={Paths.History}>History</Link>
+            <Button onClick={() => dispatch(deleteUser())}>log out</Button>
+          </>
+        ) : (
+          <>
+            <Link to={Paths.Login}>
+              <Button>Login</Button>
+            </Link>
+            <Link to={Paths.Signup}>
+              <Button>Sign Up</Button>
+            </Link>
+          </>
+        )}
       </div>
     </header>
   );
