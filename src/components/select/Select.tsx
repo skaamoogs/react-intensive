@@ -6,13 +6,13 @@ import { useOutsideClick } from '../../hooks/useOutsideClick';
 
 // IMovie or ITVSeries here
 interface ListItem {
-  id: number;
+  id: string;
   name: string;
 }
 
 export interface SelectElements {
   data: ListItem[];
-  selectedItemId?: number;
+  selectedItemId?: string;
 }
 
 const Select: FC<SelectElements> = ({ data, selectedItemId }) => {
@@ -24,7 +24,7 @@ const Select: FC<SelectElements> = ({ data, selectedItemId }) => {
 
   const handleOptionClick = (e: MouseEvent<HTMLLIElement>) => {
     const target = e.target as HTMLLIElement;
-    const elementId = Number(target.getAttribute('data-id'));
+    const elementId = target.getAttribute('data-id');
     const element = data.find((element) => element.id === elementId);
     setSelectedItem(element ?? null);
     setListShow(false);

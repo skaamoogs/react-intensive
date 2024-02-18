@@ -1,6 +1,7 @@
 .select_container {
   position: relative;
-  width: 400px;
+  width: 100%;
+  max-width: 400px;
 }
 
 .selected_text {

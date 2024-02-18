@@ -13,6 +13,8 @@ import LoginPage from './pages/login/Login';
 import SignUpPage from './pages/signup/SignUp';
 import MoviePage from './pages/movie/Movie';
 import ErrorPage from './pages/error/Error';
+import SearchPage from './pages/search/Search';
+import CatalogPage from './pages/catalog/Catalog';
 import { useAppSelector } from './store/hooks';
 import { userSelector } from './store/userSlice';
 
@@ -44,8 +46,8 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       { index: true, element: <HomePage /> },
-      { path: Paths.Search, element: <HomePage /> },
-      { path: Paths.Catalog, element: <HomePage /> },
+      { path: Paths.Search, element: <SearchPage /> },
+      { path: Paths.Catalog, element: <CatalogPage /> },
       { path: `${Paths.Movie}/:movieId`, element: <MoviePage /> },
       {
         path: Paths.Favorites,

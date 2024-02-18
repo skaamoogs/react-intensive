@@ -1,24 +1,40 @@
 import React from 'react';
-import card from './FilmCard.module.css';
+import styles from './FilmCard.module.scss';
 
 interface FilmCardProps {
-  imageUrl: string;
-  filmName: string;
-  filmStatus: string;
+  imageUrl: string | null;
+  filmName: string | null;
+  rating: number | null;
+  year: number | null;
+  genre: string | null;
 }
 
 export const FilmCard: React.FC<FilmCardProps> = ({
   imageUrl,
   filmName,
-  filmStatus,
+  rating,
+  year,
+  genre,
 }) => {
   return (
-    <div className={card.item}>
-      <div className={card.image}>
-        <img className={card.image} src={imageUrl} alt={filmName} />
+    <div className={styles.item}>
+      <div className={styles.image}>
+        <img
+          className={styles.image}
+          src={imageUrl ?? 'no-image.png'}
+          alt={filmName ?? 'no image'}
+        />
       </div>
-      <div className={card.filmName}>{filmName}</div>
-      <div className={card.filmStatus}>{filmStatus}</div>
+      <div className={styles.filmName}>{filmName}</div>
+      <div className={styles.info}>
+        {rating !== null && (
+          <span className={rating >= 7.0 ? styles.rating_high : styles.rating}>
+            {rating.toFixed(1)}
+          </span>
+        )}
+        {year && <span>{year}</span>}
+        {genre && <span className={styles.capitalized}>{genre}</span>}
+      </div>
     </div>
   );
 };

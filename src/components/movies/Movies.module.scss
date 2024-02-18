@@ -1,0 +1,42 @@
+.container {
+  display: grid;
+
+  @media screen and (width >= 1700px) {
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  @media screen and (1400px <= width < 1700px) {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  @media screen and (1150px <= width < 1400px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  @media screen and (900px <= width < 1150px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media screen and (600px <= width < 900px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  justify-items: center;
+  padding: 20px;
+
+  &::after {
+    content: '';
+    flex: auto;
+  }
+}
+
+.text {
+  text-align: center;
+}
+
+.spinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 100px;
+}
