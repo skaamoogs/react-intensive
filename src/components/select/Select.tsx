@@ -13,9 +13,18 @@ interface ListItem {
 export interface SelectElements {
   data: ListItem[];
   selectedItemId?: string;
+  className?: string;
+  name: string;
+  handleChange?: (name: string, item: string) => void;
 }
 
-const Select: FC<SelectElements> = ({ data, selectedItemId }) => {
+const Select: FC<SelectElements> = ({
+  data,
+  selectedItemId,
+  className,
+  name,
+  handleChange,
+}) => {
   const [selectedItem, setSelectedItem] = useState<ListItem | null>(null);
   const [listShow, setListShow] = useState<boolean>(false);
 
@@ -28,6 +37,7 @@ const Select: FC<SelectElements> = ({ data, selectedItemId }) => {
     const element = data.find((element) => element.id === elementId);
     setSelectedItem(element ?? null);
     setListShow(false);
+    handleChange?.(name, element?.id ?? data[0].id);
   };
 
   useEffect(() => {
