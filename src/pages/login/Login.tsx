@@ -20,8 +20,7 @@ const LoginPage = () => {
   const user = useAppSelector(userSelector);
   const dispatch = useAppDispatch();
 
-  const [login, { data, isError, error, isLoading, isSuccess }] =
-    useLoginMutation();
+  const [login, { data, isError, error }] = useLoginMutation();
   const navigate = useNavigate();
 
   const inputs: InputProps[] = [
@@ -29,7 +28,7 @@ const LoginPage = () => {
     { name: 'password', label: 'Password', type: 'password' },
   ];
 
-  const handleSignUp = async (formData: Record<string, FormDataEntryValue>) => {
+  const handleSignIn = async (formData: Record<string, FormDataEntryValue>) => {
     const { usernameOrEmail, password } = formData;
     login({
       email_or_username: usernameOrEmail.toString(),
@@ -38,9 +37,10 @@ const LoginPage = () => {
   };
 
   useEffect(() => {
+    console.log(data);
+
     if (data) {
       dispatch(setUser(data.user));
-      // TODO: Redirect to the page the user came from when accessing /login.
       navigate('/');
       return;
     }
@@ -48,29 +48,11 @@ const LoginPage = () => {
     if (error) {
       const errorData = error as QueryError;
       if (errorData) {
-        toast(errorData.data.error);
         toast(errorData.data.message);
         return;
       }
     }
-  }, [data, isError, error]);
-
-  useEffect(() => {
-    if (data) {
-      if (!data.error) {
-        alert(data.message);
-        return;
-      }
-    }
-
-    if (error) {
-      const errorData = error as QueryError;
-      if (errorData) {
-        toast(errorData.data.error);
-        return;
-      }
-    }
-  }, [data, isError, error]);
+  }, [data, isError, error, dispatch, navigate]);
 
   if (user) return <Navigate to='/' />;
 
@@ -81,7 +63,7 @@ const LoginPage = () => {
         <Form
           submitText='Sign in'
           inputs={inputs}
-          submitHandler={handleSignUp}
+          submitHandler={handleSignIn}
         />
       </div>
     </div>

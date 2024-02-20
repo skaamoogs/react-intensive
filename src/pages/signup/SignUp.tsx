@@ -18,8 +18,7 @@ interface QueryError {
 const SignUpPage = () => {
   const user = useAppSelector(userSelector);
 
-  const [register, { data, isError, error, isLoading, isSuccess }] =
-    useRegisterMutation();
+  const [register, { data, isError, error }] = useRegisterMutation();
 
   const inputs: InputProps[] = [
     { name: 'username', label: 'Username' },
