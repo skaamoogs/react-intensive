@@ -16,7 +16,6 @@ const [genres, countries, years] = [
 const CatalogPage = () => {
   const navigate = useNavigate();
   const filters = useLoaderData() as MovieFilters;
-  console.log(filters);
 
   const handleChange = (name: string, item: string) => {
     const newValue = item === 'default' ? undefined : item;
@@ -30,8 +29,6 @@ const CatalogPage = () => {
     ...filters,
     limit: 50,
   });
-
-  console.log('loading', isLoading);
 
   return (
     <div>

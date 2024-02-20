@@ -10,8 +10,6 @@ const SearchPage = () => {
     limit: 50,
   });
 
-  console.log(data);
-
   return (
     <Movies movies={data?.docs ?? []} isLoading={isLoading || isFetching} />
   );

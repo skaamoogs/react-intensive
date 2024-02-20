@@ -13,7 +13,6 @@ export const moviesApi = createApi({
   endpoints: (builder) => ({
     getFilteredMovies: builder.query<ResponseResult, GetFilteredMoviesData>({
       query: (data) => {
-        console.log('query');
         return {
           url: Endpoints.GetMovies,
           params: data,
