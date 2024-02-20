@@ -9,6 +9,7 @@ import { useAppSelector } from '../../store/hooks';
 import { userSelector } from '../../store/userSlice';
 import { toast } from 'react-toastify';
 import { DefaultResponse } from '../../api/auth/auth-types';
+import { Paths } from '../../const';
 
 interface QueryError {
   status: number;
@@ -49,7 +50,7 @@ const SignUpPage = () => {
     }
   }, [data, isError, error]);
 
-  if (user) return <Navigate to='/' />;
+  if (user) return <Navigate to={Paths.Root} />;
 
   return (
     <div className={styles.form_container}>

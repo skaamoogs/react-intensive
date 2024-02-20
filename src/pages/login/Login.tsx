@@ -8,8 +8,8 @@ import { Navigate, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { setUser, userSelector } from '../../store/userSlice';
 import { DefaultResponse } from '../../api/auth/auth-types';
-import { error } from 'console';
 import { toast } from 'react-toastify';
+import { Paths } from '../../const';
 
 interface QueryError {
   status: number;
@@ -37,11 +37,9 @@ const LoginPage = () => {
   };
 
   useEffect(() => {
-    console.log(data);
-
     if (data) {
       dispatch(setUser(data.user));
-      navigate('/');
+      navigate(Paths.Root);
       return;
     }
 
@@ -54,7 +52,7 @@ const LoginPage = () => {
     }
   }, [data, isError, error, dispatch, navigate]);
 
-  if (user) return <Navigate to='/' />;
+  if (user) return <Navigate to={Paths.Root} />;
 
   return (
     <div className={styles.form_container}>

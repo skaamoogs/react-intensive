@@ -21,12 +21,20 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const PrivateRoute: FC<PropsWithChildren> = ({ children }) => {
   const isAuthenticated = useAppSelector(userSelector);
-  return isAuthenticated ? (children as JSX.Element) : <Navigate to='/login' />;
+  return isAuthenticated ? (
+    (children as JSX.Element)
+  ) : (
+    <Navigate to={Paths.Login} />
+  );
 };
 
 const PublicRoute: FC<PropsWithChildren> = ({ children }) => {
   const isAuthenticated = useAppSelector(userSelector);
-  return isAuthenticated ? <Navigate to='/' /> : (children as JSX.Element);
+  return isAuthenticated ? (
+    <Navigate to={Paths.Root} />
+  ) : (
+    (children as JSX.Element)
+  );
 };
 
 const router = createBrowserRouter([
