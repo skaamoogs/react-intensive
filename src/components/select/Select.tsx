@@ -1,7 +1,8 @@
-import { FC, MouseEvent, useEffect, useState } from 'react';
+import { FC, MouseEvent, useEffect, useRef, useState } from 'react';
 import clsx from 'clsx';
 
 import styles from './Select.module.scss';
+import { useOutsideClick } from '../../hooks/useOutsideClick';
 
 // IMovie or ITVSeries here
 interface ListItem {
@@ -17,6 +18,9 @@ export interface SelectElements {
 const Select: FC<SelectElements> = ({ data, selectedItemId }) => {
   const [selectedItem, setSelectedItem] = useState<ListItem | null>(null);
   const [listShow, setListShow] = useState<boolean>(false);
+
+  const listRef = useRef<HTMLDivElement>(null);
+  const selectRef = useRef<HTMLUListElement>(null);
 
   const handleOptionClick = (e: MouseEvent<HTMLLIElement>) => {
     const target = e.target as HTMLLIElement;
@@ -37,13 +41,30 @@ const Select: FC<SelectElements> = ({ data, selectedItemId }) => {
     }
   }, [data, selectedItemId]);
 
+  useOutsideClick({
+    elementRef: listRef,
+    triggerRef: selectRef,
+    enabled: listShow,
+    onOutsideClick: () => setListShow(false),
+  });
+
+  const handleSelectClick = (e: MouseEvent<HTMLDivElement>) => {
+    if (listShow) {
+      e.stopPropagation();
+      setListShow(false);
+    } else {
+      setListShow(true);
+    }
+  };
+
   return (
-    <div className={styles.select_container}>
-      <div
-        className={clsx(styles.selected_text, listShow && styles.active)}
-        onClick={() => setListShow(true)}
-      >
-        <span>{selectedItem ? selectedItem.name : 'Выберите значение'}</span>
+    <div
+      className={styles.select_container}
+      ref={listRef}
+      onClick={handleSelectClick}
+    >
+      <div className={clsx(styles.selected_text, listShow && styles.active)}>
+        <span>{selectedItem ? selectedItem.name : 'Нет'}</span>
         <img
           className={clsx(styles.select_arrow, listShow && styles.active)}
           src='/arrow.svg'
@@ -51,7 +72,15 @@ const Select: FC<SelectElements> = ({ data, selectedItemId }) => {
         />
       </div>
       {listShow && (
-        <ul className={styles.select_options}>
+        <ul className={styles.select_options} ref={selectRef}>
+          <li
+            className={styles.select_option}
+            data-id={0}
+            key={0}
+            onClick={handleOptionClick}
+          >
+            Нет
+          </li>
           {data.map((option) => {
             return (
               <li
