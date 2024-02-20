@@ -38,6 +38,7 @@ const SearchBar = () => {
         className={styles.input}
         ref={inputRef}
         name='query'
+        placeholder='Search'
       />
       {searchValue && (
         <button

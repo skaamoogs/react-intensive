@@ -69,7 +69,7 @@ const Select: FC<SelectElements> = ({
 
   return (
     <div
-      className={styles.select_container}
+      className={clsx(styles.select_container, className)}
       ref={listRef}
       onClick={handleSelectClick}
     >
@@ -83,14 +83,6 @@ const Select: FC<SelectElements> = ({
       </div>
       {listShow && (
         <ul className={styles.select_options} ref={selectRef}>
-          <li
-            className={styles.select_option}
-            data-id={0}
-            key={0}
-            onClick={handleOptionClick}
-          >
-            Нет
-          </li>
           {data.map((option) => {
             return (
               <li
