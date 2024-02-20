@@ -5,14 +5,16 @@ import { useSearchMoviesQuery } from '../../api/movies';
 const SearchPage = () => {
   const searchParams = useSearchParams();
 
-  const { data, isLoading } = useSearchMoviesQuery({
+  const { data, isLoading, isFetching } = useSearchMoviesQuery({
     query: searchParams[0].get('query')!,
     limit: 50,
   });
 
   console.log(data);
 
-  return <Movies movies={data?.docs ?? []} isLoading={isLoading} />;
+  return (
+    <Movies movies={data?.docs ?? []} isLoading={isLoading || isFetching} />
+  );
 };
 
 export default SearchPage;

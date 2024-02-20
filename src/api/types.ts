@@ -14,6 +14,7 @@ export interface BaseQueryParams {
 }
 
 export enum FilterFieldNames {
+  type = 'type',
   country = 'countries.name',
   genre = 'genres.name',
   year = 'year',

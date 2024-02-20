@@ -1,60 +1,38 @@
-import { useNavigate, useSearchParams } from 'react-router-dom';
-import Movies from '../../components/movies/Movies';
-import { useGetFilteredMoviesQuery } from '../../api/movies';
+import { useLoaderData, useNavigate } from 'react-router-dom';
 import Select from '../../components/select/Select';
 import { COUNTRIES, GENRES, Paths, YEARS } from '../../const';
 import styles from './Catalog.module.scss';
-import { useEffect, useMemo, useState } from 'react';
-import {
-  createSearchQuery,
-  mapFilterOptions,
-  removeEmptyFields,
-} from '../../utils/helpers';
+import { createSearchQuery, mapFilterOptions } from '../../utils/helpers';
 import { FilterFieldNames, MovieFilters } from '../../api/types';
+import Movies from '../../components/movies/Movies';
+import { useGetFilteredMoviesQuery } from '../../api/movies';
 
-const defaultFilters = {
-  [FilterFieldNames.genre]: undefined,
-  [FilterFieldNames.country]: undefined,
-  [FilterFieldNames.year]: undefined,
-};
+const [genres, countries, years] = [
+  mapFilterOptions(GENRES),
+  mapFilterOptions(COUNTRIES),
+  [{ id: 'default', name: 'All' }, ...YEARS.map((y) => ({ id: y, name: y }))],
+];
 
 const CatalogPage = () => {
-  const [searchParams] = useSearchParams();
   const navigate = useNavigate();
-  const [filters, setFilters] = useState<MovieFilters>(defaultFilters);
-
-  const [genres, countries, years] = useMemo(
-    () => [
-      mapFilterOptions(GENRES),
-      mapFilterOptions(COUNTRIES),
-      [
-        { id: 'default', name: 'All' },
-        ...YEARS.map((y) => ({ id: y, name: y })),
-      ],
-    ],
-    []
-  );
-
-  useEffect(() => {
-    navigate({
-      pathname: Paths.Catalog,
-      search: createSearchQuery({
-        type: searchParams.get('type')!,
-        ...removeEmptyFields({ ...filters }),
-      }),
-    });
-  }, [filters, navigate, searchParams]);
+  const filters = useLoaderData() as MovieFilters;
+  console.log(filters);
 
   const handleChange = (name: string, item: string) => {
     const newValue = item === 'default' ? undefined : item;
-    setFilters((prev) => ({ ...prev, [name]: newValue }));
+    navigate({
+      pathname: Paths.Catalog,
+      search: createSearchQuery({ ...filters, [name]: newValue }),
+    });
   };
 
-  /*   const { data, isLoading } = useGetFilteredMoviesQuery({
-    ...searchParams,
+  const { data, isLoading, isFetching } = useGetFilteredMoviesQuery({
+    ...filters,
     limit: 50,
   });
- */
+
+  console.log('loading', isLoading);
+
   return (
     <div>
       <div className={styles.filters}>
@@ -64,7 +42,7 @@ const CatalogPage = () => {
             data={genres}
             name={FilterFieldNames.genre}
             className={styles.select}
-            selectedItemId='default'
+            selectedItemId={filters[FilterFieldNames.genre] ?? 'default'}
             handleChange={handleChange}
           />
         </label>
@@ -74,7 +52,7 @@ const CatalogPage = () => {
             data={countries}
             name={FilterFieldNames.country}
             className={styles.select}
-            selectedItemId='default'
+            selectedItemId={filters[FilterFieldNames.country] ?? 'default'}
             handleChange={handleChange}
           />
         </label>
@@ -84,13 +62,12 @@ const CatalogPage = () => {
             data={years}
             name={FilterFieldNames.year}
             className={styles.select}
-            selectedItemId='default'
+            selectedItemId={filters[FilterFieldNames.year] ?? 'default'}
             handleChange={handleChange}
           />
         </label>
       </div>
-      {/*       <Movies movies={data?.docs ?? []} isLoading={isLoading} />
-       */}
+      <Movies movies={data?.docs ?? []} isLoading={isLoading || isFetching} />
     </div>
   );
 };

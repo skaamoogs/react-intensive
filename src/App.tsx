@@ -15,6 +15,7 @@ import MoviePage from './pages/movie/Movie';
 import ErrorPage from './pages/error/Error';
 import SearchPage from './pages/search/Search';
 import CatalogPage from './pages/catalog/Catalog';
+import { catalogLoader } from './pages/catalog/loader';
 import { useAppSelector } from './store/hooks';
 import { userSelector } from './store/userSlice';
 
@@ -47,7 +48,7 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <HomePage /> },
       { path: Paths.Search, element: <SearchPage /> },
-      { path: Paths.Catalog, element: <CatalogPage /> },
+      { path: Paths.Catalog, element: <CatalogPage />, loader: catalogLoader },
       { path: `${Paths.Movie}/:movieId`, element: <MoviePage /> },
       {
         path: Paths.Favorites,
