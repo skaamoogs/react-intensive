@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
 import { UsersService } from '../services/user.service'
-import { RegistrationError } from '../types'
+import { AuthorizationError, RegistrationError } from '../types'
 
 export class UsersController {
   private readonly usersService: UsersService
@@ -12,10 +12,27 @@ export class UsersController {
   async loginUser(req: Request, res: Response) {
     try {
       const { email_or_username, password } = req.body
-      await this.usersService.login(email_or_username, password)
-      return res.status(200).send('Login successful')
-    } catch (error) {
-      return res.status(500).send('Error occurred')
+      const user = await this.usersService.login(email_or_username, password)
+
+      const response = {
+        username: user.username,
+        email: user.email,
+        createdAt: user.createdAt,
+      }
+
+      return res.status(200).send({
+        user: response,
+        error: null,
+        message: 'Successful authorization',
+      })
+    } catch (error: unknown) {
+      const customError = error as AuthorizationError
+
+      if (customError.errorType === 'wrong_auth_data') {
+        return res.status(400).json({ error: customError.errorType, message: customError.message })
+      } else {
+        return res.status(400).json({ error: 'unexpected_error', message: 'Unexpected error' })
+      }
     }
   }
 
@@ -23,15 +40,17 @@ export class UsersController {
     try {
       const { email, username, password } = req.body
       await this.usersService.register(email, username, password)
-      return res.status(201).send('Registration successful')
+      return res.status(201).send({
+        error: null,
+        message: 'User successfully registered',
+      })
     } catch (error: unknown) {
-      if ((error as RegistrationError).errorType === 'email_exists') {
-        return res.status(400).json({ error: (error as RegistrationError).message })
-      } else if ((error as RegistrationError).errorType === 'username_exists') {
-        return res.status(400).json({ error: (error as RegistrationError).message })
+      const customError = error as RegistrationError
+
+      if (customError.errorType === 'email_exists' || customError.errorType === 'username_exists') {
+        return res.status(400).json({ error: customError.errorType, message: customError.message })
       } else {
-        console.error('Error in Register Controller:', error)
-        return res.status(500).send('Error occurred')
+        return res.status(400).json({ error: 'unexpected_error', message: 'Unexpected error' })
       }
     }
   }
