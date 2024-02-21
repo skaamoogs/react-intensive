@@ -12,10 +12,12 @@ export const moviesApi = createApi({
   baseQuery,
   endpoints: (builder) => ({
     getFilteredMovies: builder.query<ResponseResult, GetFilteredMoviesData>({
-      query: (data) => ({
-        url: Endpoints.GetMovies,
-        params: data,
-      }),
+      query: (data) => {
+        return {
+          url: Endpoints.GetMovies,
+          params: data,
+        };
+      },
     }),
     searchMovies: builder.query<ResponseResult, SearchMoviesData>({
       query: (data) => ({

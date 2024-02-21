@@ -6,6 +6,7 @@ import { Outlet } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import ErrorBoundary from '../components/error-boundary/ErrorBoundary';
 import ErrorPage from './error/Error';
+import SearchBar from '../components/search-bar/SeacrhBar';
 
 const Layout: FC = () => {
   return (
@@ -14,7 +15,7 @@ const Layout: FC = () => {
       <div className={styles.container}>
         <Header />
         <main className={styles.main}>
-          {/* Maybe a block with search and filters will be here? */}
+          <SearchBar />
           <Outlet />
         </main>
       </div>

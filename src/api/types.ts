@@ -14,8 +14,10 @@ export interface BaseQueryParams {
 }
 
 export enum FilterFieldNames {
+  type = 'type',
   country = 'countries.name',
   genre = 'genres.name',
+  year = 'year',
 }
 
 export interface PossibleFilterValues {
@@ -26,7 +28,7 @@ export interface PossibleFilterValues {
 }
 
 export interface MovieFilters extends PossibleFilterValues {
-  year?: string;
+  [FilterFieldNames.year]?: string;
 }
 
 export type GetFilteredMoviesData = BaseQueryParams & MovieFilters;
