@@ -6,6 +6,11 @@ export interface UserData {
 }
 
 export interface UserDataState {
-  userData: UserData | null;
-  userId: string | null;
+  favorites: Movie[];
+  history: string[];
+}
+
+export interface AddFavoriteMovie {
+  userName: string;
+  movie: Movie;
 }

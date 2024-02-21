@@ -41,3 +41,8 @@ export enum MovieTypes {
   TvSeries = 'tv-series',
   Cartoon = 'cartoon',
 }
+
+export interface UserHistory {
+  id: string;
+  url: string;
+}

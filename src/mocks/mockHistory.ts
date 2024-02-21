@@ -1,4 +1,6 @@
-export const mockHistory: { id: string; url: string }[] = [
+import { UserHistory } from '../types/types';
+
+export const mockHistory: UserHistory[] = [
   { id: '1', url: 'https://localhost:3000/search?query=Дензел+Вашингтон' },
   {
     id: '2',

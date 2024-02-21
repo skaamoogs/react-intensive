@@ -1,21 +1,15 @@
-import { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
+
 import Movies from '../../components/movies/Movies';
 import { useSearchMoviesQuery } from '../../api/movies';
-import { setToLocalStorage } from '../../utils/localStorage';
 
 const SearchPage = () => {
-  const searchParams = useSearchParams();
+  const [searchParams] = useSearchParams();
 
   const { data, isLoading, isFetching } = useSearchMoviesQuery({
-    query: searchParams[0].get('query')!,
+    query: searchParams.get('query')!,
     limit: 50,
   });
-
-  useEffect(() => {
-    if (data) {
-    }
-  }, [data]);
 
   return (
     <Movies movies={data?.docs ?? []} isLoading={isLoading || isFetching} />

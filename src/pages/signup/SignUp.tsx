@@ -44,7 +44,7 @@ const SignUpPage = () => {
     if (error) {
       const errorData = error as QueryError;
       if (errorData) {
-        toast(errorData.data.error);
+        toast(errorData.data.message);
         return;
       }
     }
