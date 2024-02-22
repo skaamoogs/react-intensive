@@ -1,36 +1,30 @@
 .filmPage {
   display: flex;
+  padding: 20px;
   margin: 10px 0 50px 0;
-  width: 1380px;
   height: 800px;
   border-radius: 15px;
-  background-color: #270c2f;
-  box-shadow: 0 0 13px 1px rgba(255, 255, 255, 0.7);
 }
 
 .filmImage {
-  width: 500px;
-  height: 600px;
-  margin: 20px;
+  width: 400px;
   border-radius: 15px;
 }
 
 .filmName {
-  margin: 50px 0 0 250px;
-  font-size: 20px;
+  font-size: 24px;
   font-weight: 600;
+  margin-bottom: 40px;
 }
 
 .filmDescription {
   flex-direction: column;
+  margin: 0 50px;
 }
 
 .filmTextDescription {
-  margin: 50px;
   line-height: normal;
   font-size: 20px;
-  width: 650px;
-  height: 480px;
   overflow: hidden;
   position: relative;
 }
@@ -80,4 +74,11 @@
 
 .filmRating {
   padding-left: 80px;
+}
+
+.spinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 100px;
 }

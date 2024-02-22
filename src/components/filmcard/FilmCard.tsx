@@ -1,7 +1,10 @@
 import React from 'react';
 import styles from './FilmCard.module.scss';
+import { useNavigate } from 'react-router-dom';
+import { Paths } from '../../const';
 
 interface FilmCardProps {
+  id: number | null;
   imageUrl: string | null;
   filmName: string | null;
   rating: number | null;
@@ -15,9 +18,15 @@ export const FilmCard: React.FC<FilmCardProps> = ({
   rating,
   year,
   genre,
+  id,
 }) => {
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate(`${Paths.Movie}/${id}`);
+  };
+
   return (
-    <div className={styles.item}>
+    <div className={styles.item} onClick={handleClick}>
       <div className={styles.image}>
         <img
           className={styles.image}
