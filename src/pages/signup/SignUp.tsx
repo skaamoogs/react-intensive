@@ -4,9 +4,9 @@ import Form from '../../components/form/Form';
 import { type InputProps } from '../../components/input/Input';
 
 import styles from './SignUp.module.scss';
-import { Navigate } from 'react-router-dom';
-import { useAppSelector } from '../../store/hooks';
-import { userSelector } from '../../store/userSlice';
+import { Navigate, useNavigate } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { setUser, userSelector } from '../../store/userSlice';
 import { toast } from 'react-toastify';
 import { DefaultResponse } from '../../api/auth/auth-types';
 import { Paths } from '../../const';
@@ -18,6 +18,10 @@ interface QueryError {
 
 const SignUpPage = () => {
   const user = useAppSelector(userSelector);
+
+  const dispatch = useAppDispatch();
+
+  const navigate = useNavigate();
 
   const [register, { data, isError, error }] = useRegisterMutation();
 
@@ -39,12 +43,14 @@ const SignUpPage = () => {
   useEffect(() => {
     if (data) {
       toast(data.message);
+      dispatch(setUser(data.user));
+      navigate(Paths.Root);
     }
 
     if (error) {
       const errorData = error as QueryError;
       if (errorData) {
-        toast(errorData.data.error);
+        toast(errorData.data.message);
         return;
       }
     }

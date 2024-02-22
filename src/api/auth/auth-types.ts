@@ -7,9 +7,6 @@ export type IUser = {
 export interface DefaultResponse {
   error: string | null;
   message: string;
-}
-
-export interface LoginResponse extends DefaultResponse {
   user: IUser;
 }
 

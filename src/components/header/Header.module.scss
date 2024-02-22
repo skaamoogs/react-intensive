@@ -226,8 +226,7 @@ svg {
 }
 
 .dropdown_list_wrapper {
-  background-color: transparent;
-  backdrop-filter: blur(10px);
+  background-color: $background;
   border-radius: 8px;
   border: 0.1rem solid var(--border-color);
   position: relative;
