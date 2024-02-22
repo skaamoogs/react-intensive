@@ -34,7 +34,7 @@ export interface MovieFilters extends PossibleFilterValues {
 export type GetFilteredMoviesData = BaseQueryParams & MovieFilters;
 
 export interface SearchMoviesData extends BaseQueryParams {
-  query: string;
+  url: string;
 }
 
 export interface GetMovieByIdData {

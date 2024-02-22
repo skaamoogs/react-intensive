@@ -21,6 +21,7 @@ import { userSelector } from './store/userSlice';
 
 import './App.css';
 import 'react-toastify/dist/ReactToastify.css';
+import { searchLoader } from './pages/search/loader';
 
 const PrivateRoute: FC<PropsWithChildren> = ({ children }) => {
   const isAuthenticated = useAppSelector(userSelector);
@@ -47,7 +48,7 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       { index: true, element: <HomePage /> },
-      { path: Paths.Search, element: <SearchPage /> },
+      { path: Paths.Search, element: <SearchPage />, loader: searchLoader },
       { path: Paths.Catalog, element: <CatalogPage />, loader: catalogLoader },
       { path: `${Paths.Movie}/:movieId`, element: <MoviePage /> },
       {

@@ -1,13 +1,13 @@
-import { useSearchParams } from 'react-router-dom';
+import { useLoaderData } from 'react-router-dom';
 
 import Movies from '../../components/movies/Movies';
 import { useSearchMoviesQuery } from '../../api/movies';
 
 const SearchPage = () => {
-  const [searchParams] = useSearchParams();
+  const url = useLoaderData() as string;
 
   const { data, isLoading, isFetching } = useSearchMoviesQuery({
-    query: searchParams.get('query')!,
+    url,
     limit: 50,
   });
 

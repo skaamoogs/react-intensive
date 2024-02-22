@@ -6,6 +6,7 @@ import {
   SearchMoviesData,
 } from './types';
 import { baseQuery } from './utils';
+import { addHistoryEntry } from '../store/userDataSlice';
 
 export const moviesApi = createApi({
   reducerPath: 'movies',
@@ -20,10 +21,24 @@ export const moviesApi = createApi({
       },
     }),
     searchMovies: builder.query<ResponseResult, SearchMoviesData>({
-      query: (data) => ({
-        url: Endpoints.SearchMovies,
-        params: data,
-      }),
+      query: (data) => {
+        console.log(data.url);
+        const { searchParams } = new URL(data.url);
+        return {
+          url: Endpoints.SearchMovies,
+          params: searchParams,
+        };
+      },
+      async onQueryStarted(requestData, { dispatch, queryFulfilled }) {
+        try {
+          const { data } = await queryFulfilled;
+          if (data) {
+            dispatch(addHistoryEntry(requestData.url));
+          }
+        } catch (error) {
+          console.log('Error searching movies');
+        }
+      },
     }),
   }),
 });

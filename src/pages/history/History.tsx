@@ -1,4 +1,5 @@
-import { mockHistory } from '../../mocks/mockHistory';
+import { useAppSelector } from '../../store/hooks';
+import { userHistorySelector } from '../../store/userDataSlice';
 import styles from './History.module.scss';
 import { Link } from 'react-router-dom';
 
@@ -6,7 +7,7 @@ const HistoryPage = () => {
   /* TODO Когда будет сделана авторизация, 
   брать историю запросов (urls) из данных пользователя
   */
-  const history = mockHistory;
+  const history = useAppSelector(userHistorySelector);
 
   return (
     <>

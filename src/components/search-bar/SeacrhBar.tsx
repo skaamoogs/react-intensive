@@ -3,6 +3,7 @@ import Input from '../input/Input';
 import styles from './SearchBar.module.scss';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { Paths } from '../../const';
+import { createSearchQuery } from '../../utils/helpers';
 
 const SearchBar = () => {
   const navigate = useNavigate();
@@ -23,10 +24,13 @@ const SearchBar = () => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     if (!searchValue) {
-      e.preventDefault();
       return;
     }
-    navigate(Paths.Search);
+    e.preventDefault();
+    navigate({
+      pathname: Paths.Search,
+      search: createSearchQuery({ query: searchValue }),
+    });
   };
 
   return (

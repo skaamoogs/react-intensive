@@ -4,7 +4,9 @@ import { moviesApi, moviesReducer } from '../api/movies';
 import { movieApi, movieReducer } from '../api/movie';
 import { authApi, authReducer } from '../api/auth/auth';
 import userReducer from './userSlice';
+import userDataReducer from './userDataSlice';
 import { filtersApi, filtersReducer } from '../api/filters';
+import { setToLocalStorage } from '../utils/localStorage';
 
 export const store = configureStore({
   reducer: {
@@ -14,6 +16,7 @@ export const store = configureStore({
     filters: filtersReducer,
     auth: authReducer,
     user: userReducer,
+    userData: userDataReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(
