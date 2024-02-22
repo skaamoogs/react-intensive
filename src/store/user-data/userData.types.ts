@@ -2,7 +2,7 @@ import { Movie } from '../../types/types';
 
 export interface UserData {
   favorites: Movie[];
-  history: User[];
+  history: string[];
 }
 
 export interface UserDataState {

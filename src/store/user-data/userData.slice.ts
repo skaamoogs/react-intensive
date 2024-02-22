@@ -1,4 +1,4 @@
-import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+/* import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { getFromLocalStorage } from '../../utils/localStorage';
 import { UserData, UserDataState } from './userData.types';
 import { Movie } from '../../types/types';
@@ -24,4 +24,5 @@ const userDataSlice = createSlice({
   },
 });
 
-export const {} = userDataSlice.actions;
+export const {} = userDataSlice.actions; */
+export {};
