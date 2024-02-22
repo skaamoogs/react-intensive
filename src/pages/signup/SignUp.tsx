@@ -54,6 +54,7 @@ const SignUpPage = () => {
         return;
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data, isError, error]);
 
   if (user) return <Navigate to={Paths.Root} />;
