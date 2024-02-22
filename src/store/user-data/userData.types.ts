@@ -2,10 +2,10 @@ import { Movie } from '../../types/types';
 
 export interface UserData {
   favorites: Movie[];
-  history: string[];
+  history: User[];
 }
 
 export interface UserDataState {
-  userData: UserData | null;
-  userId: string | null;
+  favorites: Movie[];
+  history: string[];
 }
