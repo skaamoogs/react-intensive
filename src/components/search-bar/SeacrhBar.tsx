@@ -46,11 +46,11 @@ const SearchBar = () => {
           className={styles.button_cancel}
           onClick={clearInput}
         >
-          <img src='cancel.svg' alt='reset' className={styles.icon} />
+          <img src='/cancel.svg' alt='reset' className={styles.icon} />
         </button>
       )}
       <button type='submit' className={styles.button}>
-        <img src='search.svg' alt='search' className={styles.icon} />
+        <img src='/search.svg' alt='search' className={styles.icon} />
       </button>
     </form>
   );

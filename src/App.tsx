@@ -11,7 +11,6 @@ import HistoryPage from './pages/history/History';
 import HomePage from './pages/home/Home';
 import LoginPage from './pages/login/Login';
 import SignUpPage from './pages/signup/SignUp';
-import MoviePage from './pages/movie/Movie';
 import ErrorPage from './pages/error/Error';
 import SearchPage from './pages/search/Search';
 import CatalogPage from './pages/catalog/Catalog';
@@ -21,6 +20,7 @@ import { userSelector } from './store/userSlice';
 
 import './App.css';
 import 'react-toastify/dist/ReactToastify.css';
+import FilmPage from './pages/filmpage/FilmPage';
 
 const PrivateRoute: FC<PropsWithChildren> = ({ children }) => {
   const isAuthenticated = useAppSelector(userSelector);
@@ -49,7 +49,7 @@ const router = createBrowserRouter([
       { index: true, element: <HomePage /> },
       { path: Paths.Search, element: <SearchPage /> },
       { path: Paths.Catalog, element: <CatalogPage />, loader: catalogLoader },
-      { path: `${Paths.Movie}/:movieId`, element: <MoviePage /> },
+      { path: `${Paths.Movie}/:movieId`, element: <FilmPage /> },
       {
         path: Paths.Favorites,
         element: (

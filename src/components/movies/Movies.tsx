@@ -21,6 +21,7 @@ const Movies = ({ movies, isLoading }: MoviesProps) => {
     <div className={styles.container}>
       {movies.map((m) => (
         <FilmCard
+          id={m.id}
           key={m.id}
           filmName={m.name}
           imageUrl={m.backdrop.url}

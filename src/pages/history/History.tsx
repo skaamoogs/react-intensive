@@ -10,7 +10,7 @@ const HistoryPage = () => {
 
   return (
     <>
-      <h1 className={styles.title}>История запросов</h1>
+      <h1 className={styles.title}>Queries history</h1>
       {history.length ? (
         <ul>
           {history.map(({ id, url }) => {
